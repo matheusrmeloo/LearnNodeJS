@@ -1,2 +1,2 @@
-# LearnNodeJS
+# Learn NodeJS
 This repostory is intended to show code snippets I'm learning from NodeJS
