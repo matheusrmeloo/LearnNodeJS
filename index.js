@@ -1,3 +1,4 @@
+const Joi = require('joi');
 const express = require('express');
 const app = express();
 
@@ -26,8 +27,16 @@ app.get('/api/courses/:id', (req,res) => {
 });
 
 app.post('/api/courses', (req,res) => {
-    if (!req.body.name || req.body.name.length < 3){
-        res.status(404).send('Nome Inválido');
+    const schema = {
+        name: Joi.string().min(2).required()
+    };
+
+    const result = Joi.validate(req.body, schema);
+    console.log(result);
+
+
+    if (result.error){
+        res.status(404).send(result.error);
         return;
     }
     
